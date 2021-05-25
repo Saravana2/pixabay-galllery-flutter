@@ -8,6 +8,7 @@ import 'package:flutter_ui/screens/ImageDetailScreen.dart';
 import 'package:flutter_ui/widget/AppTextField.dart';
 
 import 'lazy_load_Scrollview.dart';
+import 'screens/SplashScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch:  Colors.grey,
       ),
-      home: MyHomePage(title: 'Mine'),
+      home: SplashScreen(),
       //home: ImageDetailScreen(null,hasPrev: false,hasNext: false,),
     );
   }

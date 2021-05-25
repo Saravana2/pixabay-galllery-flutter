@@ -250,7 +250,7 @@ class BottomSheetView extends StatelessWidget{
   List<Hits> _getHits(){
     List<String> userProfileUrl = [];
     userProfileUrl.add("https://cdn.pixabay.com/user/2019/11/08/12-57-56-969_250x250.jpg");
-    userProfileUrl.add("https://cdn.pixabay.com/user/2021/03/09/19-11-20-168_250x250.jpg");
+    userProfileUrl.add("https://i.pinimg.com/236x/17/e5/94/17e594f4f7da0bb823ec8a9099b18a88.jpg");
     userProfileUrl.add("https://cdn.pixabay.com/user/2016/12/13/22-15-04-376_250x250.jpg");
     userProfileUrl.add("https://i.pinimg.com/236x/17/e5/94/17e594f4f7da0bb823ec8a9099b18a88.jpg");
     userProfileUrl.add("https://cdn.pixabay.com/user/2019/09/05/14-05-20-901_250x250.jpg");
@@ -258,7 +258,7 @@ class BottomSheetView extends StatelessWidget{
     userProfileUrl.add("https://cdn.pixabay.com/user/2021/03/15/05-41-18-807_250x250.jpg");
     List<String> userName = [];
     userName.add("Sathish");
-    userName.add("Maha");
+    userName.add("Maeve Wiley");
     userName.add("Joseph");
     userName.add("Maeve Wiley");
     userName.add("Otis");
