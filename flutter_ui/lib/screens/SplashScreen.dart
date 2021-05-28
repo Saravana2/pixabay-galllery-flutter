@@ -2,13 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ui/main.dart';
+import 'package:flutter_ui/utils.dart';
 
 class SplashScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     startTime(context);
     return Container(
-      color: const Color(0xff18740A),
+      color: Utils.primaryGreen,
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
