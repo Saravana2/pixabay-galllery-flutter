@@ -2,16 +2,17 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ui/main.dart';
 import 'package:flutter_ui/model/ImageResponse.dart';
+import 'package:flutter_ui/screens/helper_screens.dart';
 import 'package:flutter_ui/widget/AppTextField.dart';
 
 class ImageDetailScreen extends StatelessWidget {
   TextEditingController _textEditingController = TextEditingController();
   Hits hit;
-  bool hasNext=false;
-  bool hasPrev=false;
-  ImageDetailScreen(this.hit,{this.hasNext,this.hasPrev});
+  bool hasNext = false;
+  bool hasPrev = false;
+
+  ImageDetailScreen(this.hit, {this.hasNext, this.hasPrev});
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   AppBar appBar = AppBar(
@@ -56,47 +57,51 @@ class ImageDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget getNextAndPrevButton(context){
+  Widget getNextAndPrevButton(context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-      hasPrev ?  MaterialButton(
-          minWidth: 0,
-          padding: EdgeInsets.all(4.0),
-          child: Icon(
-            Icons.navigate_next,
-            textDirection: TextDirection.rtl,
-          ),
-          color: Colors.black38,
-          textColor: Colors.white,
-          shape: CircleBorder(),
-          onPressed: () {
-            _onPageChange(true,context);
-          },
-        ): Container(),
-        hasNext ? MaterialButton(
-          minWidth: 0,
-          padding: EdgeInsets.all(4.0),
-          child: Icon(
-            Icons.navigate_next,
-          ),
-          color: Colors.black38,
-          textColor: Colors.white,
-          shape: CircleBorder(),
-          onPressed: () {
-            _onPageChange(false,context);
-          },
-        ): Container(),
+        hasPrev
+            ? MaterialButton(
+                minWidth: 0,
+                padding: EdgeInsets.all(4.0),
+                child: Icon(
+                  Icons.navigate_next,
+                  textDirection: TextDirection.rtl,
+                ),
+                color: Colors.black38,
+                textColor: Colors.white,
+                shape: CircleBorder(),
+                onPressed: () {
+                  _onPageChange(true, context);
+                },
+              )
+            : Container(),
+        hasNext
+            ? MaterialButton(
+                minWidth: 0,
+                padding: EdgeInsets.all(4.0),
+                child: Icon(
+                  Icons.navigate_next,
+                ),
+                color: Colors.black38,
+                textColor: Colors.white,
+                shape: CircleBorder(),
+                onPressed: () {
+                  _onPageChange(false, context);
+                },
+              )
+            : Container(),
       ],
     );
   }
 
-  _onPageChange(bool isPrev,context){
+  _onPageChange(bool isPrev, context) {
     var pageType = isPrev ? 1 : 2;
     Navigator.pop(context, pageType);
   }
 
-  Widget getDetailView(context){
+  Widget getDetailView(context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -116,11 +121,13 @@ class ImageDetailScreen extends StatelessWidget {
                   child: Stack(
                     alignment: Alignment.center,
                     fit: StackFit.expand,
-                    children:[
+                    children: [
                       ClipRRect(
                           borderRadius: BorderRadius.circular(24.0),
-                          child: Image.network(this.hit.largeImageURL,
-                            fit: BoxFit.cover,)),
+                          child: Image.network(
+                            this.hit.largeImageURL,
+                            fit: BoxFit.cover,
+                          )),
                       getNextAndPrevButton(context),
                     ],
                   ),
@@ -144,9 +151,22 @@ class ImageDetailScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(this.hit.user == null ? "" : this.hit.user,textAlign: TextAlign.left,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16.0),),
-                                SizedBox(height: 2.0,),
-                                Text('20.03.2021',textAlign: TextAlign.left,style: TextStyle(color: Colors.grey,fontSize: 12.0),)
+                                Text(
+                                  this.hit.user == null ? "" : this.hit.user,
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16.0),
+                                ),
+                                SizedBox(
+                                  height: 2.0,
+                                ),
+                                Text(
+                                  '20.03.2021',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      color: Colors.grey, fontSize: 12.0),
+                                )
                               ],
                             ),
                           ),
@@ -157,11 +177,15 @@ class ImageDetailScreen extends StatelessWidget {
                           Icon(
                             Icons.remove_red_eye,
                           ),
-                          SizedBox(width: 8.0,),
+                          SizedBox(
+                            width: 8.0,
+                          ),
                           Text(
                             this.hit.views.toString(),
                           ),
-                          SizedBox(width: 8.0,),
+                          SizedBox(
+                            width: 8.0,
+                          ),
                         ],
                       )
                     ],
@@ -196,7 +220,9 @@ class ImageDetailScreen extends StatelessWidget {
                     color: Colors.white,
                     textColor: Colors.black,
                     shape: CircleBorder(),
-                    onPressed: () {_showBottomSheet(context);},
+                    onPressed: () {
+                      _showBottomSheet(context);
+                    },
                   ),
                 )
               ],
@@ -207,39 +233,45 @@ class ImageDetailScreen extends StatelessWidget {
     );
   }
 
-  _showBottomSheet(context){
+  _showBottomSheet(context) {
     showModalBottomSheet(
-        context: context,
-        builder: (builder) => BottomSheetView(),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-          topLeft: const Radius.circular(32.0),
-          topRight: const Radius.circular(32.0),
-        )),);
+      context: context,
+      builder: (builder) => BottomSheetView(),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+        topLeft: const Radius.circular(32.0),
+        topRight: const Radius.circular(32.0),
+      )),
+    );
   }
-
 }
 
-
-
-
-class BottomSheetView extends StatelessWidget{
+class BottomSheetView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-     margin: EdgeInsets.all(16.0),
+      margin: EdgeInsets.all(16.0),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Center(child: Text("Share",style: TextStyle(fontSize: 20.0,),)),
+          Center(
+              child: Text(
+            "Share",
+            style: TextStyle(
+              fontSize: 20.0,
+            ),
+          )),
           BottomSheetPageView(_getHits()),
           RaisedButton(
-            padding: EdgeInsets.only(top:16.0,bottom: 16.0),
-            child: Text("Share",style: TextStyle(color: Colors.white,fontSize: 18.0),),
+            padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
+            child: Text(
+              "Share",
+              style: TextStyle(color: Colors.white, fontSize: 18.0),
+            ),
             color: Colors.black,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0)),
             onPressed: () {},
           )
         ],
@@ -247,15 +279,22 @@ class BottomSheetView extends StatelessWidget{
     );
   }
 
-  List<Hits> _getHits(){
+  List<Hits> _getHits() {
     List<String> userProfileUrl = [];
-    userProfileUrl.add("https://cdn.pixabay.com/user/2019/11/08/12-57-56-969_250x250.jpg");
-    userProfileUrl.add("https://i.pinimg.com/236x/17/e5/94/17e594f4f7da0bb823ec8a9099b18a88.jpg");
-    userProfileUrl.add("https://cdn.pixabay.com/user/2016/12/13/22-15-04-376_250x250.jpg");
-    userProfileUrl.add("https://i.pinimg.com/236x/17/e5/94/17e594f4f7da0bb823ec8a9099b18a88.jpg");
-    userProfileUrl.add("https://cdn.pixabay.com/user/2019/09/05/14-05-20-901_250x250.jpg");
-    userProfileUrl.add("https://cdn.pixabay.com/user/2019/01/29/15-01-52-802_250x250.jpg");
-    userProfileUrl.add("https://cdn.pixabay.com/user/2021/03/15/05-41-18-807_250x250.jpg");
+    userProfileUrl.add(
+        "https://cdn.pixabay.com/user/2019/11/08/12-57-56-969_250x250.jpg");
+    userProfileUrl.add(
+        "https://i.pinimg.com/236x/17/e5/94/17e594f4f7da0bb823ec8a9099b18a88.jpg");
+    userProfileUrl.add(
+        "https://cdn.pixabay.com/user/2016/12/13/22-15-04-376_250x250.jpg");
+    userProfileUrl.add(
+        "https://i.pinimg.com/236x/17/e5/94/17e594f4f7da0bb823ec8a9099b18a88.jpg");
+    userProfileUrl.add(
+        "https://cdn.pixabay.com/user/2019/09/05/14-05-20-901_250x250.jpg");
+    userProfileUrl.add(
+        "https://cdn.pixabay.com/user/2019/01/29/15-01-52-802_250x250.jpg");
+    userProfileUrl.add(
+        "https://cdn.pixabay.com/user/2021/03/15/05-41-18-807_250x250.jpg");
     List<String> userName = [];
     userName.add("Sathish");
     userName.add("Maeve Wiley");
@@ -273,13 +312,11 @@ class BottomSheetView extends StatelessWidget{
     }
     return hits;
   }
-
 }
-
-
 
 class BottomSheetPageView extends StatefulWidget {
   final List<Hits> hits;
+
   BottomSheetPageView(this.hits);
 
   @override
@@ -301,7 +338,7 @@ class _BottomSheetPageViewState extends State<BottomSheetPageView> {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        margin: EdgeInsets.only(top:16.0),
+        margin: EdgeInsets.only(top: 16.0),
         child: PageView(
           controller: _controller,
           children: getPageViewChildren(),
@@ -310,32 +347,34 @@ class _BottomSheetPageViewState extends State<BottomSheetPageView> {
     );
   }
 
-  List<Widget>  getPageViewChildren(){
+  List<Widget> getPageViewChildren() {
     List<Widget> listWidgets = [];
-    if(widget.hits==null || widget.hits.length==0){
+    if (widget.hits == null || widget.hits.length == 0) {
       listWidgets.add(ShareGridPage(null));
       return listWidgets;
     }
 
-    int totalPage = widget.hits.length~/8;
-    for(int i=0;i<widget.hits.length; i += 8){
-      if(i/8==totalPage){
+    int totalPage = widget.hits.length ~/ 8;
+    for (int i = 0; i < widget.hits.length; i += 8) {
+      if (i / 8 == totalPage) {
         listWidgets.add(ShareGridPage(widget.hits.sublist(i)));
-      }else{
-        listWidgets.add(ShareGridPage(widget.hits.sublist(i, i+8)));
+      } else {
+        listWidgets.add(ShareGridPage(widget.hits.sublist(i, i + 8)));
       }
     }
     return listWidgets;
   }
 }
 
-class ShareGridPage extends StatelessWidget{
+class ShareGridPage extends StatelessWidget {
   final List<Hits> hits;
+
   ShareGridPage(this.hits);
+
   @override
   Widget build(BuildContext context) {
-    if(hits==null || hits.length==0){
-       return BlankPageWithName(title:"No users to share");
+    if (hits == null || hits.length == 0) {
+      return BlankPageWithName(title: "No users to share");
     }
     return Center(
       child: GridView.builder(
