@@ -338,32 +338,30 @@ class ShareGridPage extends StatelessWidget{
        return BlankPageWithName(title:"No users to share");
     }
     return Center(
-      child: Expanded(
-        child: GridView.builder(
-          shrinkWrap: true,
-          itemCount: hits.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Container(
-              color: Colors.white,
-              child: Column(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(25.0),
-                    child: Image.network(
-                      hits[index].userImageURL,
-                      height: 50,
-                      width: 50,
-                    ),
+      child: GridView.builder(
+        shrinkWrap: true,
+        itemCount: hits.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+            color: Colors.white,
+            child: Column(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(25.0),
+                  child: Image.network(
+                    hits[index].userImageURL,
+                    height: 50,
+                    width: 50,
                   ),
-                  SizedBox(height: 10),
-                  Text(hits[index].user == null ? "NULL" : hits[index].user)
-                ],
-              ),
-            );
-          },
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4, childAspectRatio: 0.8),
-        ),
+                ),
+                SizedBox(height: 10),
+                Text(hits[index].user == null ? "NULL" : hits[index].user)
+              ],
+            ),
+          );
+        },
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 4, childAspectRatio: 0.8),
       ),
     );
   }
