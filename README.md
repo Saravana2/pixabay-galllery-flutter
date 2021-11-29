@@ -11,9 +11,6 @@ lib\APIHelper.dart file
 const API_KEY = "YOUR_API_TOKEN";
 ```
 
-### Play Store Link
-<a href='https://play.google.com/store/apps/details?id=com.pixabay.gallery&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1' target="_blank" rel="noopener noreferrer"><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width="300" height="125"/></a>
-
 # ScreenShots
 Wireframe: https://framer.com/share/Social-app-copy--ri68yLRs9gn2bFJSrXEh/H08WOJABs#H08WOJABs
 
